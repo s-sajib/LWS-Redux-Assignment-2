@@ -1,8 +1,10 @@
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from "../redux/booking/actions";
 function InputSection() {
   const dispatch = useDispatch();
+  const currentState = useSelector((state) => state);
+
   const formValues = useRef({
     from: null,
     to: null,
@@ -135,7 +137,12 @@ function InputSection() {
             class="addCity"
             type="submit"
             id="lws-addCity"
-            // disabled={!formValues.current.acceptBooking}
+            onClick={() =>
+              currentState.length === 3
+                ? alert("Maximum Booking Limit Reached!")
+                : null
+            }
+            disabled={currentState?.length === 3}
           >
             <svg
               width="15px"
