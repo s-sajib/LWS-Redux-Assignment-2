@@ -2,9 +2,11 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from "../redux/booking/actions";
 function InputSection() {
+  //init redux
   const dispatch = useDispatch();
   const currentState = useSelector((state) => state);
 
+  //init FormValues
   const formValues = useRef({
     from: null,
     to: null,
@@ -14,7 +16,6 @@ function InputSection() {
   });
 
   //handle form Values Change
-
   function handleChange(event) {
     formValues.current[event.target.name] = event.target.value;
   }
@@ -27,16 +28,16 @@ function InputSection() {
   }
 
   return (
-    <div class="mt-[160px] mx-4 md:mt-[160px] relative">
-      <div class="bg-white rounded-md max-w-6xl w-full mx-auto">
-        <form class="first-hero lws-inputform" onSubmit={handleSubmit}>
+    <div className="mt-[160px] mx-4 md:mt-[160px] relative">
+      <div className="bg-white rounded-md max-w-6xl w-full mx-auto">
+        <form className="first-hero lws-inputform" onSubmit={handleSubmit}>
           {/* <!-- From --> */}
-          <div class="des-from">
+          <div className="des-from">
             <p>Destination From</p>
-            <div class="flex flex-row">
+            <div className="flex flex-row">
               <img src="./img/icons/Frame.svg" alt="" />
               <select
-                class="outline-none px-2 py-2 w-full"
+                className="outline-none px-2 py-2 w-full"
                 name="from"
                 id="lws-from"
                 required
@@ -54,12 +55,12 @@ function InputSection() {
           </div>
 
           {/* <!-- To --> */}
-          <div class="des-from">
+          <div className="des-from">
             <p>Destination To</p>
-            <div class="flex flex-row">
+            <div className="flex flex-row">
               <img src="./img/icons/Frame.svg" alt="" />
               <select
-                class="outline-none px-2 py-2 w-full"
+                className="outline-none px-2 py-2 w-full"
                 name="to"
                 id="lws-to"
                 required
@@ -77,11 +78,11 @@ function InputSection() {
           </div>
 
           {/* <!-- Date --> */}
-          <div class="des-from">
+          <div className="des-from">
             <p>Journey Date</p>
             <input
               type="date"
-              class="outline-none px-2 py-2 w-full date"
+              className="outline-none px-2 py-2 w-full date"
               name="date"
               id="lws-date"
               required
@@ -90,12 +91,12 @@ function InputSection() {
           </div>
 
           {/* <!-- Guests --> */}
-          <div class="des-from">
+          <div className="des-from">
             <p>Guests</p>
-            <div class="flex flex-row">
+            <div className="flex flex-row">
               <img src="./img/icons/Vector (1).svg" alt="" />
               <select
-                class="outline-none px-2 py-2 w-full"
+                className="outline-none px-2 py-2 w-full"
                 name="guests"
                 id="lws-guests"
                 required
@@ -113,12 +114,12 @@ function InputSection() {
           </div>
 
           {/* <!-- Class --> */}
-          <div class="des-from !border-r-0">
+          <div className="des-from !border-r-0">
             <p>Class</p>
-            <div class="flex flex-row">
+            <div className="flex flex-row">
               <img src="./img/icons/Vector (3).svg" alt="" />
               <select
-                class="outline-none px-2 py-2 w-full"
+                className="outline-none px-2 py-2 w-full"
                 name="ticketClass"
                 id="lws-ticketClass"
                 required
@@ -134,14 +135,9 @@ function InputSection() {
           </div>
 
           <button
-            class="addCity"
+            className="addCity"
             type="submit"
             id="lws-addCity"
-            onClick={() =>
-              currentState.length === 3
-                ? alert("Maximum Booking Limit Reached!")
-                : null
-            }
             disabled={currentState?.length === 3}
           >
             <svg
@@ -158,7 +154,7 @@ function InputSection() {
                 d="M12 4.5v15m7.5-7.5h-15"
               />
             </svg>
-            <span class="text-sm">Book</span>
+            <span className="text-sm">Book</span>
           </button>
         </form>
       </div>
