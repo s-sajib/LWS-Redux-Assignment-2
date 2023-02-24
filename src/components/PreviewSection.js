@@ -17,7 +17,7 @@ function PreviewSection() {
             <th>Destination To</th>
             <th className="text-center">Journey Date</th>
             <th className="text-center">Guests</th>
-            <th className="text-center">className</th>
+            <th className="text-center">Class</th>
             <th className="text-center">Delete</th>
           </tr>
         </thead>
@@ -44,8 +44,8 @@ function PreviewSection() {
                     <p className="lws-bookedGustes">{booking.guests}</p>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="lws-bookedclassName">
-                      {booking.ticketclassName}
+                    <span className="lws-bookedClass">
+                      {booking.ticketClass}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-center">
