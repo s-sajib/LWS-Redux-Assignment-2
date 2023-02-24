@@ -1,8 +1,33 @@
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { addBooking } from "../redux/booking/actions";
 function InputSection() {
+  const dispatch = useDispatch();
+  const formValues = useRef({
+    from: null,
+    to: null,
+    date: null,
+    guests: null,
+    ticketClass: null,
+  });
+
+  //handle form Values Change
+
+  function handleChange(event) {
+    formValues.current[event.target.name] = event.target.value;
+  }
+
+  //Handle Form Submit
+  function handleSubmit(event) {
+    event.preventDefault();
+    dispatch(addBooking(formValues.current));
+    event.target.reset();
+  }
+
   return (
     <div class="mt-[160px] mx-4 md:mt-[160px] relative">
       <div class="bg-white rounded-md max-w-6xl w-full mx-auto">
-        <form class="first-hero lws-inputform">
+        <form class="first-hero lws-inputform" onSubmit={handleSubmit}>
           {/* <!-- From --> */}
           <div class="des-from">
             <p>Destination From</p>
@@ -13,6 +38,7 @@ function InputSection() {
                 name="from"
                 id="lws-from"
                 required
+                onChange={handleChange}
               >
                 <option value="" hidden>
                   Please Select
@@ -35,6 +61,7 @@ function InputSection() {
                 name="to"
                 id="lws-to"
                 required
+                onChange={handleChange}
               >
                 <option value="" hidden>
                   Please Select
@@ -56,6 +83,7 @@ function InputSection() {
               name="date"
               id="lws-date"
               required
+              onChange={handleChange}
             />
           </div>
 
@@ -69,6 +97,7 @@ function InputSection() {
                 name="guests"
                 id="lws-guests"
                 required
+                onChange={handleChange}
               >
                 <option value="" hidden>
                   Please Select
@@ -91,6 +120,7 @@ function InputSection() {
                 name="ticketClass"
                 id="lws-ticketClass"
                 required
+                onChange={handleChange}
               >
                 <option value="" hidden>
                   Please Select
@@ -101,7 +131,12 @@ function InputSection() {
             </div>
           </div>
 
-          <button class="addCity" type="submit" id="lws-addCity">
+          <button
+            class="addCity"
+            type="submit"
+            id="lws-addCity"
+            // disabled={!formValues.current.acceptBooking}
+          >
             <svg
               width="15px"
               height="15px"
