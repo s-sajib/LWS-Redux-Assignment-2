@@ -1,9 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { deleteBooking } from "../redux/booking/actions";
 function PreviewSection() {
   const currentState = useSelector((state) => state);
+  const dispatch = useDispatch();
 
+  function handleDelete(index) {
+    dispatch(deleteBooking(index));
+  }
   return (
     <div className="table-container">
       <table className="booking-table">
@@ -20,7 +24,7 @@ function PreviewSection() {
         <tbody className="divide-y divide-gray-300/20" id="lws-previewBooked">
           {/* <!-- Row 1 --> */}
           {currentState.length > 0 ? (
-            currentState.map((booking) => {
+            currentState.map((booking, index) => {
               return (
                 <tr className="lws-bookedTable text-black">
                   <td className="px-6 py-4">
@@ -41,13 +45,15 @@ function PreviewSection() {
                   </td>
                   <td className="px-6 py-4 text-center">
                     <span className="lws-bookedclassName">
-                      {" "}
-                      {booking.ticketclassName}{" "}
+                      {booking.ticketclassName}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-center">
                     <div className="flex justify-center gap-4">
-                      <button className="lws-remove">
+                      <button
+                        className="lws-remove"
+                        onClick={() => handleDelete(index)}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
